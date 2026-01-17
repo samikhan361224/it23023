@@ -1,0 +1,37 @@
+Mathematical Details of the Algorithm
+1. Integer Generation
+
+Formula:
+
+R = (seed mod (max − min + 1)) + min
+
+Where:
+
+seed = System.nanoTime()
+
+Ensures uniform distribution within [min, max]
+
+2. Double Generation
+
+Formula:
+
+R = min + ( (random × time) mod (max − min) )
+
+Where:
+
+random = Math.random() ∈ [0,1)
+
+time = System.currentTimeMillis()
+
+3. Float Generation
+
+Formula:
+
+R = min + ( (random × nanoTime) mod (max − min) )
+4. Mixed-Type Generation
+
+Formula:
+
+R = IntegerPart + DoublePart
+
+Combines two independent random spaces for better entropy.
