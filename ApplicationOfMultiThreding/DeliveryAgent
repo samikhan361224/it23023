@@ -1,0 +1,27 @@
+public class DeliveryAgent extends Thread {
+
+    private final OrderQueue orderQueue;
+    private final String agentName;
+
+    public DeliveryAgent(String name, OrderQueue queue) {
+        this.agentName = name;
+        this.orderQueue = queue;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            Order order = orderQueue.getOrder();
+
+            if (order != null) {
+                System.out.println(agentName + " delivered Order ID: " + order.getOrderId());
+            }
+
+            try {
+                Thread.sleep(1000); // simulate delivery time
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
