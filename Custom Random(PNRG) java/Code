@@ -1,0 +1,41 @@
+public class HybridRandomDemo {
+
+    // Generate random integer
+    public static int generate(int min, int max) {
+        long seed = System.nanoTime();
+        return (int) ((seed % (max - min + 1)) + min);
+    }
+
+    // Generate random double
+    public static double generate(double min, double max) {
+        double seed = Math.random() * System.currentTimeMillis();
+        return min + (seed % (max - min));
+    }
+
+    // Generate random float
+    public static float generate(float min, float max) {
+        float seed = (float) Math.random() * (System.nanoTime() % 1000);
+        return min + (seed % (max - min));
+    }
+
+    // Mixed type: int + double
+    public static double generate(int iMin, int iMax, double dMin, double dMax) {
+        int intPart = generate(iMin, iMax);
+        double doublePart = generate(dMin, dMax);
+        return intPart + doublePart;
+    }
+
+    // Main method (testing the overloaded static methods)
+    public static void main(String[] args) {
+
+        int randomInt = HybridRandomDemo.generate(10, 50);
+        double randomDouble = HybridRandomDemo.generate(1.2, 8.9);
+        float randomFloat = HybridRandomDemo.generate(3.5f, 9.5f);
+        double mixedRandom = HybridRandomDemo.generate(1, 5, 0.1, 0.9);
+
+        System.out.println("Random Integer  : " + randomInt);
+        System.out.println("Random Double   : " + randomDouble);
+        System.out.println("Random Float    : " + randomFloat);
+        System.out.println("Mixed Random    : " + mixedRandom);
+    }
+}
