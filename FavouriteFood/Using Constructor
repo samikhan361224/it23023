@@ -1,0 +1,17 @@
+class FavouriteFood {
+    String name;
+    int calories;
+
+    FavouriteFood(String name, int calories) {
+        this.name = name;
+        this.calories = calories;
+    }
+}
+
+public class Test3 {
+    public static void main(String[] args) {
+        FavouriteFood food = new FavouriteFood("Burger", 450);
+
+        System.out.println(food.name + " - " + food.calories);
+    }
+}
