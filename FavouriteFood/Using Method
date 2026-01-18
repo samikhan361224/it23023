@@ -1,0 +1,18 @@
+class FavouriteFood {
+    String name;
+    int calories;
+
+    void setFood(String n, int c) {
+        name = n;
+        calories = c;
+    }
+}
+
+public class Test2 {
+    public static void main(String[] args) {
+        FavouriteFood food = new FavouriteFood();
+        food.setFood("Pizza", 500);
+
+        System.out.println(food.name + " - " + food.calories);
+    }
+}
