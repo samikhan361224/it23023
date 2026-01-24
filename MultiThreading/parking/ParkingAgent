@@ -1,0 +1,26 @@
+package parking;
+
+public class ParkingAgent extends Thread {
+
+    private final ParkingPool pool;
+
+    public ParkingAgent(String name, ParkingPool pool) {
+        super(name);
+        this.pool = pool;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            RegistrarParking car = pool.getCar();
+            System.out.println(getName() +
+                    " parked Car " + car.getCarId());
+
+            try {
+                Thread.sleep(1000); // simulate parking time
+            } catch (InterruptedException e) {
+                break;
+            }
+        }
+    }
+}
