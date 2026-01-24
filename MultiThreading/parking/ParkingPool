@@ -1,0 +1,28 @@
+package parking;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class ParkingPool {
+
+    private final Queue<RegistrarParking> queue = new LinkedList<>();
+
+    // Add parking request
+    public synchronized void addCar(RegistrarParking car) {
+        queue.add(car);
+        System.out.println("Car " + car.getCarId() + " arrived for parking.");
+        notifyAll(); // notify waiting agents
+    }
+
+    // Get parking request
+    public synchronized RegistrarParking getCar() {
+        while (queue.isEmpty()) {
+            try {
+                wait(); // wait until car arrives
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return queue.poll();
+    }
+}
