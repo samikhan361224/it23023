@@ -1,0 +1,28 @@
+package parking;
+
+public class MainClass {
+
+    public static void main(String[] args) {
+
+        ParkingPool pool = new ParkingPool();
+
+        // Create Parking Agents
+        ParkingAgent agent1 = new ParkingAgent("Agent-1", pool);
+        ParkingAgent agent2 = new ParkingAgent("Agent-2", pool);
+
+        agent1.start();
+        agent2.start();
+
+        // Create N car parking requests
+        for (int i = 1; i <= 10; i++) {
+            RegistrarParking car = new RegistrarParking(i);
+            pool.addCar(car);
+
+            try {
+                Thread.sleep(500); // arrival gap
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
